@@ -6,11 +6,11 @@ LOG_LEVEL = 'DEBUG'  # / CRITICAL / ERROR / WARNING / INFO / DEBUG
 SECRET_KEY = 'abdinafac'
 
 # SQLAlchemy.
-db_uri = 'postgresql://postgres:feelfree252@192.168.1.200:5432/inventory1'
+db_uri = 'postgresql://postgres:feelfree252@192.168.1.200:5432/inventory2'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = db_uri
 
-# User.
+# # User.
 # SEED_ADMIN_EMAIL = 'admin@local.host'
 # SEED_ADMIN_PASSWORD = 'aothecode'
 # SEED_ADMIN_USER = 'administrator'

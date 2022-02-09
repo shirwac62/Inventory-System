@@ -1,29 +1,27 @@
-import datetime
+# import datetime
 from flask import render_template, url_for, flash, redirect, request
 
-from utility import blueprint
-from web import app
+# from utility import blueprint
+# from web import app
 from web.blueprints.login.forms import LoginForm
 from web.extensions import bcrypt
 from web.blueprints.register.models import User
 from flask_login import login_user, current_user, logout_user, login_required
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateTimeField, SelectField, \
-    Label
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+# from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateTimeField, SelectField, \
+#     Label
+# from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from utility.mkblueprint import ProjectBlueprint
 
-blueprint = ProjectBlueprint('login', __name__)
+blueprint = ProjectBlueprint('/', __name__)
 
-
-@blueprint.route('/')
-@blueprint.route('/anon')
-def anon():
-    return redirect(url_for('login.anon'))
+#
+# @blueprint.route('/')
+# @blueprint.route('/anon')
+# def anon():
+#     return redirect(url_for('login.anon'))
 
 
 @blueprint.route(blueprint.url, methods=['GET', 'POST'])
-# @blueprint.route('/login', methods=['GET', 'POST'])
-# @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
