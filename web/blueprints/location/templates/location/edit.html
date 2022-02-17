@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <div class="huge">Edit Location</div>
+    </div>
+    <div class="col-md-6 offset-md-3 border pt-2">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST" action="">
+                {{ form.hidden_tag() }} <!--CSRF TOKEN -->
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            {{ form.name.label(class="form-control-label") }}
+                            {{ form.name(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            {{ form.rent.label(class="form-control-label") }}
+                            {{ form.rent(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                            {{ form.description.label(class="form-control-label") }}
+                            {{ form.description(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-success navbar-dark bg-dark") }}
+                    </div>
+<!--                    <button type="submit" class="button" >SAVE</button>-->
+<!--                    <div class="col-md-2 float-right">-->
+<!--                        {% set href = url_for('location.add_location') %}-->
+<!--                        <button class="btn btn-success navbar-dark bg-dark" onclick=" window.location.href='{{ href }}';">Add Location</button>-->
+<!--                    </div>-->
+                </form>
+<!--                <div class="form-group">-->
+<!--                        {{ form.submit(class="btn btn-success navbar-dark bg-dark") }}-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock content %}

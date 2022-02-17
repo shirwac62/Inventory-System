@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_bcrypt import Bcrypt
 from flask_bootstrap import Bootstrap
 from web.blueprints import tenant_list
+from web.blueprints.register.models import User
 from web.extensions import db, login_manager
 
 
@@ -17,13 +18,17 @@ def create_app(settings_override=None):
     app.config.from_pyfile('settings.py', silent=True)
     app.config['USE_SESSION_FOR_NEXT'] = True
     Bootstrap(app)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
     extensions(app)
     for tenant in tenant_list:
         app.register_blueprint(tenant)
 
-        # @app.before_first_request
-        # def create_tables():
-        #     db.create_all()
+        @app.before_first_request
+        def create_tables():
+            db.create_all()
 
     return app
 
