@@ -10,31 +10,31 @@
                 {{ form.hidden_tag() }} <!--CSRF TOKEN -->
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{ form.name.label(class="form-control-label") }}
-                        {{ form.name(class="form-control form-control-lg") }}
+                        {{ form.productname.label(class="form-control-label") }}
+                        {{ form.productname(class="form-control form-control-lg") }}
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{ form.from_location.label(class="form-control-label") }}
-                        {{ form.from_location(class="form-control form-control-lg") }}
+                            <label class="form-control-label">From Location</label>
+                            {{ form.location(class="form-control form-control-lg") }}
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{ form.to_location.label(class="form-control-label") }}
-                        {{ form.to_location(class="form-control form-control-lg") }}
+                            <label class="form-control-label">To Location</label>
+                           <input type="text" name="to_location" class="form-control form-control-lg " value="{{request.form.to_location}}"  >
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{ form.quantity.label(class="form-control-label") }}
-                        {{ form.quantity(class="form-control form-control-lg") }}
+                            {{ form.quantity.label(class="form-control-label") }}
+                            {{ form.quantity(class="form-control form-control-lg") }}
                     </div>
                 </fieldset>
                 <fieldset>
                 <div class="form-group">
-                            <button type="submit" class="btn btn-warning">Edit Product</button>
+                            <button type="submit" class="btn btn-warning">Edit Movement</button>
                 </div>
             </fieldset>
             </form>

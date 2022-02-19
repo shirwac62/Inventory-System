@@ -1,5 +1,6 @@
 from flask import render_template, url_for, flash, request, jsonify
 from flask_login import login_required
+from flask_wtf import form
 from werkzeug.utils import redirect
 
 from utility.blueprint import ProjectBlueprint
@@ -17,7 +18,6 @@ blueprint: ProjectBlueprint = ProjectBlueprint("movement", __name__)
 def add_movement(product_id):
     data = Product.query.get(product_id)
     mvdata = Movement()
-    form = AddProduct(obj=data)
     if form.validate_on_submit():
         mvdata.name = form.productname.data
         mvdata.from_location = form.location.data
@@ -33,14 +33,15 @@ def add_movement(product_id):
 @blueprint.route(blueprint.url + "/edit/<movement_id>", methods=['GET', 'POST'])
 @login_required
 def edit_movement(movement_id):
-    data = Product.query.get(movement_id)
+    data = Movement.query.get(movement_id)
     form = AddProduct(obj=data)
+    mvdata = Movement()
     if form.validate_on_submit():
-        data.name = form.name.data
-        data.from_location = form.from_location.data
-        data.to_location = form.to_location.data
-        data.quantity = form.quantity.data
-        save_to_db(data)
+        mvdata.name = form.productname.data
+        mvdata.from_location = form.location.data
+        mvdata.to_location = request.form["to_location"]
+        mvdata.quantity = form.quantity.data
+        save_to_db(mvdata)
         flash('Your Movement has been Updated', 'success')
         return redirect(url_for('movement.product_movement'))
     return render_template('movement/edit.html', title='edit_movement', form=form, movement=Movement)
