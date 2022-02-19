@@ -93,20 +93,31 @@
                 </div>
             </div>
         </div>
-        <div class="footer navbar-dark bg-dark" style="position: fixed;left: 0;bottom: 0;width: 100%;color: white;">
-            <div class="row">
-                <div class="col-md-2">
-                    <small class="text-muted">Inventory Management</small>
-                </div>
-            </div>
-        </div>
+<!--        <div class="footer navbar-dark bg-dark" style="position: fixed;left: 0;bottom: 0;width: 100%;color: white;">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-2">-->
+<!--                    <small class="text-muted">Inventory Management</small>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
 
 
             <script type="text/javascript" src="{{url_for('static', filename='DataTables/datatables.min.js')}}"></script>
 
-
+          <script>
+             $(document).ready( function () {
+                 if ($('#move').length > 0){
+                     $('#move').DataTable({
+                        "serverSide": true,
+                        "ajax": {  url: "movement/api",
+                        "data": function (d) {   delete d.columns; },
+                                },
+                     });
+                 }
+             } );
+        </script>
 
       <script>
              $(document).ready( function () {
@@ -133,9 +144,6 @@
                  }
              } );
         </script>
-
-
-
 
     </body>
 </html>

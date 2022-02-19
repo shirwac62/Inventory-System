@@ -6,7 +6,7 @@ LOG_LEVEL = 'DEBUG'  # / CRITICAL / ERROR / WARNING / INFO / DEBUG
 SECRET_KEY = 'abdinafac'
 
 # SQLAlchemy.
-db_uri = 'postgresql://postgres:970894cC@localhost/inventory2'
+db_uri = 'postgresql://postgres:feelfree252@192.168.1.200/inventory3'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = db_uri
 

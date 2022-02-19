@@ -23,7 +23,7 @@ def add_location():
         save_to_db(data)
         flash('Location Added', 'success')
         return redirect(url_for('location.viewlocation'))
-    return render_template('location/add.html', title='Location', form=form)
+    return render_template('location/waxkle.html', title='Location', form=form)
 
 
 @blueprint.route(blueprint.url + "/edit/<location_id>", methods=['GET', 'POST'])
