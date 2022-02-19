@@ -17,13 +17,14 @@ blueprint: ProjectBlueprint = ProjectBlueprint("movement", __name__)
 @login_required
 def add_movement(product_id):
     data = Product.query.get(product_id)
-    mvdata = Movement()
+    form = AddProduct(obj=data)
+    mv_data = Movement()
     if form.validate_on_submit():
-        mvdata.name = form.productname.data
-        mvdata.from_location = form.location.data
-        mvdata.to_location = request.form["to_location"]
-        mvdata.quantity = form.quantity.data
-        save_to_db(mvdata)
+        mv_data.name = form.productname.data
+        mv_data.from_location = form.location.data
+        mv_data.to_location = request.form["to_location"]
+        mv_data.quantity = form.quantity.data
+        save_to_db(mv_data)
         delete(data)
         flash('Your Movement has been created', 'success')
         return redirect(url_for('movement.product_movement'))
@@ -35,13 +36,13 @@ def add_movement(product_id):
 def edit_movement(movement_id):
     data = Movement.query.get(movement_id)
     form = AddProduct(obj=data)
-    mvdata = Movement()
+    mv_data = Movement()
     if form.validate_on_submit():
-        mvdata.name = form.productname.data
-        mvdata.from_location = form.location.data
-        mvdata.to_location = request.form["to_location"]
-        mvdata.quantity = form.quantity.data
-        save_to_db(mvdata)
+        mv_data.name = form.productname.data
+        mv_data.from_location = form.location.data
+        mv_data.to_location = request.form["to_location"]
+        mv_data.quantity = form.quantity.data
+        save_to_db(mv_data)
         flash('Your Movement has been Updated', 'success')
         return redirect(url_for('movement.product_movement'))
     return render_template('movement/edit.html', title='edit_movement', form=form, movement=Movement)
