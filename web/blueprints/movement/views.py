@@ -48,6 +48,18 @@ def edit_movement(movement_id):
     return render_template('movement/edit.html', title='edit_movement', form=form, movement=Movement)
 
 
+@blueprint.route(blueprint.url + "/delete/<movement_id>", methods=['GET', 'POST'])
+@login_required
+def delete_movement(movement_id):
+    data = Movement.query.get(movement_id)
+    form = AddProduct(obj=data)
+    if form.validate_on_submit():
+        delete(data)
+        flash('Your Movement has been Deleted', 'success')
+        return redirect(url_for('movement.product_movement'))
+    return render_template('movement/delete.html', title="delete_product", form=form, product=Product, data=data)
+
+
 @blueprint.route(blueprint.url + '/api')
 def pub_index():
     print("pub_index  pub_index")
@@ -62,7 +74,8 @@ def pub_index():
     data = []
     for b in data_list.items:
         row = [b.movement_id, b.name, b.from_location, b.to_location, b.quantity,
-               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(url_for('movement.edit_movement', movement_id=b.movement_id))]
+               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(url_for('movement.edit_movement', movement_id=b.movement_id))+ " " +\
+               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(url_for('movement.delete_movement', movement_id=b.movement_id))]
         data += [row]
     print("data_list.total: ", data_list.total)
     return jsonify({'data': data, "recordsTotal": data_list.total,

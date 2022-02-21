@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <div class="huge">Add Movement</div>
+    </div>
+    <div class="col-md-6 offset-md-3 border pt-2">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST" action="">
+                {{ form.hidden_tag() }} <!--CSRF TOKEN -->
+                   <fieldset class="form-group">
+                        <div class="form-group">
+                            {{ form.productname.label(class="form-control-label") }}
+                            {{ form.productname(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label class="form-control-label">From Location</label>
+                            {{ form.location(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            <label class="form-control-label">To Location</label>
+                           <input type="text" name="to_location" class="form-control form-control-lg " value="{{request.form.to_location}}"  >
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            {{ form.quantity.label(class="form-control-label") }}
+                            {{ form.quantity(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                    <fieldset>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">Delete Movement</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
