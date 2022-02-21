@@ -6,7 +6,7 @@ from werkzeug.utils import redirect
 from utility.mkblueprint import ProjectBlueprint
 from web.blueprints.location.forms import AddLocation
 from web.blueprints.location.model import location
-from web.extensions import save_to_db, db
+from web.extensions import save_to_db, db, delete
 
 # blueprint: ProjectBlueprint = ProjectBlueprint("/add_location", __name__)
 blueprint: ProjectBlueprint = ProjectBlueprint("location", __name__)
@@ -23,7 +23,7 @@ def add_location():
         save_to_db(data)
         flash('Location Added', 'success')
         return redirect(url_for('location.viewlocation'))
-    return render_template('location/waxkle.html', title='Location', form=form)
+    return render_template('location/add.html', title='Location', form=form)
 
 
 @blueprint.route(blueprint.url + "/edit/<location_id>", methods=['GET', 'POST'])
@@ -41,6 +41,20 @@ def edit_location(location_id):
     # return render_template('edit.html', title='Location', form=form)
     return render_template('location/edit.html', title='Location', form=form, locations=location)
 
+@blueprint.route(blueprint.url + "/delete/<location_id>", methods=['GET', 'POST'])
+@login_required
+def delete_location(location_id):
+    data = location.query.get(location_id)
+    form = AddLocation(obj=data)
+    if form.validate_on_submit():
+        delete(data)
+        # data.name = form.name.data
+        # data.description = form.description.data
+        # data.rent = form.rent.data
+        flash('Your product has been Deleted', 'success')
+        return redirect(url_for('location.viewlocation'))
+    return render_template('location/delete.html', title='delete_Location', form=form, locations=location,data=data)
+
 
 @blueprint.route(blueprint.url + '/api')
 def pub_index():
@@ -55,7 +69,11 @@ def pub_index():
     data_list = location.query.filter(location.name.ilike('%' + search + '%')).paginate(page, length, True)
     data = []
     for b in data_list.items:
-        row = [b.location_id, b.name, b.description, b.rent, '<a href="{0}">Edit</a>'.format(url_for('location.edit_location', location_id=b.location_id))]
+        row = [b.location_id, b.name, b.description, b.rent,
+               # '<a href="{0}">Edit</a>'.format(url_for('location.edit_location', location_id=b.location_id))
+               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(url_for('location.edit_location', location_id=b.location_id)) + "  " + \
+               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(url_for('location.delete_location', location_id=b.location_id))]
+
         data += [row]
     print("data_list.total: ", data_list.total)
     return jsonify({'data': data, "recordsTotal": data_list.total,
