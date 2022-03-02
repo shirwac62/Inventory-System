@@ -14,6 +14,7 @@ from utility.mkblueprint import ProjectBlueprint
 
 blueprint = ProjectBlueprint('/', __name__)
 
+
 #
 # @blueprint.route('/')
 # @blueprint.route('/anon')
@@ -35,3 +36,8 @@ def login():
         else:
             flash('Login Unsuccessful', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+
+@blueprint.route(blueprint.url + '/about')
+def about():
+    return render_template('about.html', title='about')
