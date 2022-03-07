@@ -52,7 +52,7 @@ def edit_movement(movement_id):
 @login_required
 def delete_movement(movement_id):
     data = Movement.query.get(movement_id)
-    form = AddProduct(obj=data)
+    form = AddMovement(obj=data)
     if form.validate_on_submit():
         delete(data)
         flash('Your Movement has been Deleted', 'success')
