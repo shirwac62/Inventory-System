@@ -10,14 +10,14 @@
                 {{ form.hidden_tag() }} <!--CSRF TOKEN -->
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{ form.productname.label(class="form-control-label") }}
-                        {{ form.productname(class="form-control form-control-lg")}}
+                        {{ form.name.label(class="form-control-label") }}
+                        {{ form.name(class="form-control form-control-lg")}}
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
                     <div class="form-group">
                             <label class="form-control-label">From Location</label>
-                            {{ form.location(class="form-control form-control-lg") }}
+                            {{ form.from_location(class="form-control form-control-lg") }}
                     </div>
                 </fieldset>
                 <fieldset class="form-group">

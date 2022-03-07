@@ -63,7 +63,7 @@ def pub_index():
     data_list = Product.query.filter(Product.productname.ilike('%' + search + '%')).paginate(page, length, True)
     data = []
     for b in data_list.items:
-        row = [b.product_id, b.productname, b.location,
+        row = [b.product_id, b.productname, b.location, b.quantity,
                '<a href="{0}" style=" text-decoration: none">Move</a>'.format( url_for('movement.add_movement', product_id=b.product_id)),\
                '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format( url_for('product.edit_product', product_id=b.product_id))+ " " +\
                '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format( url_for('product.delete_product', product_id=b.product_id))]

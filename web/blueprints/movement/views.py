@@ -35,14 +35,14 @@ def add_movement(product_id):
 @login_required
 def edit_movement(movement_id):
     data = Movement.query.get(movement_id)
-    form = AddProduct(obj=data)
-    mv_data = Movement()
+    form = AddMovement(obj=data)
+    # mv_data = Movement()
     if form.validate_on_submit():
-        mv_data.name = form.productname.data
-        mv_data.from_location = form.location.data
-        mv_data.to_location = request.form["to_location"]
-        mv_data.quantity = form.quantity.data
-        save_to_db(mv_data)
+        data.name = form.name.data
+        data.from_location = form.from_location.data
+        data.to_location = request.form["to_location"]
+        data.quantity = form.quantity.data
+        save_to_db(data)
         flash('Your Movement has been Updated', 'success')
         return redirect(url_for('movement.product_movement'))
     return render_template('movement/edit.html', title='edit_movement', form=form, movement=Movement)
