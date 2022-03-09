@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="col-md-6 offset-md-3">
-        <div class="huge">Delete Product</div>
+        <div class="huge">Add Customer</div>
     </div>
     <div class="col-md-6 offset-md-3 border pt-2">
         <div class="row">
@@ -10,20 +10,26 @@
                 {{ form.hidden_tag() }} <!--CSRF TOKEN -->
                    <fieldset class="form-group">
                         <div class="form-group">
-                            {{ form.productname.label(class="form-control-label") }}
-                            {{ form.productname(class="form-control form-control-lg") }}
+                            {{ form.First_Name.label(class="form-control-label") }}
+                            {{ form.First_Name(class="form-control form-control-lg") }}
                         </div>
                     </fieldset>
                     <fieldset class="form-group">
                         <div class="form-group">
-                            {{ form.location.label(class="form-control-label") }}
-                            {{ form.location(class="form-control form-control-lg") }}
+                            {{ form.Last_Name.label(class="form-control-label") }}
+                            {{ form.Last_Name(class="form-control form-control-lg") }}
                         </div>
                     </fieldset>
                     <fieldset class="form-group">
                         <div class="form-group">
-                            {{ form.quantity.label(class="form-control-label") }}
-                            {{ form.quantity(class="form-control form-control-lg") }}
+                            {{ form.Address.label(class="form-control-label") }}
+                            {{ form.Address(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="form-group">
+                            {{ form.Contact_Number.label(class="form-control-label") }}
+                            {{ form.Contact_Number(class="form-control form-control-lg") }}
                         </div>
                     </fieldset>
             </div>
@@ -34,7 +40,7 @@
             <div class="col-md-12">
                     <fieldset>
                         <div class="form-group">
-                                    <button type="submit" class="btn btn-danger">Delete Product</button>
+                            <button type="submit" class="btn btn-primary">Add Customer</button>
                         </div>
                     </fieldset>
                 </form>
