@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-lg-3 col-md-6">
-                <a href="{{ url_for('bootstrap.static', filename ='view_product') }}" style="text-decoration:none; color: white;">
+                <a href="{{ url_for('product.product') }}" style="text-decoration:none; color: white;">
                 <div class="border rounded navbar-dark bg-dark">
                     <div class="panel-heading">
                         <br>
@@ -20,7 +20,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <a href="{{ url_for('/.login') }}" style="text-decoration:none; color: white;">
+                <a href="{{ url_for('location.viewlocation') }}" style="text-decoration:none; color: white;">
                 <div class="border rounded navbar-dark bg-dark">
                     <div class="panel-heading">
                         <br>
@@ -37,15 +37,15 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <a href="#" style="text-decoration:none; color: white;">
+                <a href="{{ url_for('movement.product_movement') }}" style="text-decoration:none; color: white;">
                 <div class="border rounded navbar-dark bg-dark">
                     <div class="panel-heading">
                         <br>
                         <div class="row">
                             <div class="col-md-8 offset-md-3 text-right">
-                                <div class="huge">{{ sales }}</div>
-                                <div>Total Sales</div>
-                                <div>View Sales</div>
+                                <div class="huge">{{ Movements }}</div>
+                                <div>Total Movements</div>
+                                <div>View Movements</div>
                             </div>
                         </div>
                         <br>
@@ -54,15 +54,15 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <a href="{{ url_for('home.home') }}" style="text-decoration:none; color: white;">
+                <a href="{{ url_for('customer.customer') }}" style="text-decoration:none; color: white;">
                 <div class="border rounded navbar-dark bg-dark">
                     <div class="panel-heading">
                         <br>
                         <div class="row">
                             <div class="col-md-8 offset-md-3 text-right">
-                                <div class="huge">{{ movements }}</div>
-                                <div>Total Movement</div>
-                                <div>Product Movement</div>
+                                <div class="huge">{{ customer }}</div>
+                                <div>Total Customer</div>
+                                <div>View Customer</div>
                             </div>
                         </div>
                         <br>
