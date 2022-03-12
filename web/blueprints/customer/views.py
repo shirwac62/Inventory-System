@@ -65,8 +65,10 @@ def pub_index():
     data = []
     for b in data_list.items:
         row = [b.Customer_Id, b.First_Name, b.Last_Name, b.Address, b.Contact_Number,
-               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(url_for('customer.edit_customer', Customer_Id=b.Customer_Id))+ " " +\
-               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(url_for('customer.delete_customer', Customer_Id=b.Customer_Id))]
+               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(
+                   url_for('customer.edit_customer', Customer_Id=b.Customer_Id)) + " " + \
+               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(
+                   url_for('customer.delete_customer', Customer_Id=b.Customer_Id))]
         data += [row]
     print("data_list.total: ", data_list.total)
     return jsonify({'data': data, "recordsTotal": data_list.total,

@@ -52,6 +52,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('customer.customer') }}">Customer</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('supplier.supplier') }}">Supplier</a>
+                        </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('/.about') }}">About</a>
@@ -153,6 +156,18 @@
                      $('#customer').DataTable({
                         "serverSide": true,
                         "ajax": {  url: "customer/api",
+                        "data": function (d) {   delete d.columns; },
+                                },
+                     });
+                 }
+             } );
+        </script>
+   <script>
+             $(document).ready( function () {
+                 if ($('#supplier').length > 0){
+                     $('#supplier').DataTable({
+                        "serverSide": true,
+                        "ajax": {  url: "supplier/api",
                         "data": function (d) {   delete d.columns; },
                                 },
                      });
