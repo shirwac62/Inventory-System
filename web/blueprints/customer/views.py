@@ -20,7 +20,7 @@ def add_customer():
         save_to_db(data)
         flash('Your Customer has been created', 'success')
         return redirect(url_for('customer.customer'))
-    return render_template('customer/add.html', title='product', form=form)
+    return render_template('customer/add.html', title='Customer', form=form)
 
 
 @blueprint.route(blueprint.url + "/edit/<Customer_Id>", methods=['GET', 'POST'])
