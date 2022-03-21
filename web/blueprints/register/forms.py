@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-# from inventorymanagement import app, mysql, db
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, SelectField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 from web.blueprints.register.models import User
 
 
