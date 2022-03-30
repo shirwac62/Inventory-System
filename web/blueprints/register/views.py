@@ -1,9 +1,7 @@
 import datetime
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect
 from flask_login import current_user
-
-from web import app
-from web.extensions import db, login_manager, bcrypt, save_to_db
+from web.extensions import bcrypt, save_to_db
 
 from web.blueprints.register.forms import RegistrationForm
 from web.blueprints.register.models import User

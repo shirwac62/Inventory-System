@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_bootstrap import Bootstrap
 from web.blueprints import tenant_list
@@ -39,11 +39,9 @@ def extensions(app):
     :param app: Flask application instance
     :return: None
     """
-    # csrf.init_app(app)
     db.app = app
     db.init_app(app)
     bcrypt = Bcrypt(app)
     login_manager.init_app(app)
-    # migrate.init_app(app, db)
 
     return None

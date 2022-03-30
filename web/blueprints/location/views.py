@@ -1,6 +1,5 @@
 from flask import flash, url_for, render_template, jsonify, request
 from flask_login import login_required
-from sqlalchemy.orm import session
 from werkzeug.utils import redirect
 
 from utility.mkblueprint import ProjectBlueprint
@@ -8,7 +7,6 @@ from web.blueprints.location.forms import AddLocation
 from web.blueprints.location.model import location
 from web.extensions import save_to_db, db, delete
 
-# blueprint: ProjectBlueprint = ProjectBlueprint("/add_location", __name__)
 blueprint: ProjectBlueprint = ProjectBlueprint("location", __name__)
 
 
@@ -19,7 +17,6 @@ def add_location():
     if form.validate_on_submit():
         data = location()
         form.populate_obj(data)
-        # data.save()
         save_to_db(data)
         flash('Location Added', 'success')
         return redirect(url_for('location.viewlocation'))
@@ -38,8 +35,8 @@ def edit_location(location_id):
         flash('Updated!', 'success')
         save_to_db(data)
         return redirect(url_for('location.viewlocation'))
-    # return render_template('edit.html', title='Location', form=form)
     return render_template('location/edit.html', title='Location', form=form, locations=location)
+
 
 @blueprint.route(blueprint.url + "/delete/<location_id>", methods=['GET', 'POST'])
 @login_required
@@ -48,12 +45,9 @@ def delete_location(location_id):
     form = AddLocation(obj=data)
     if form.validate_on_submit():
         delete(data)
-        # data.name = form.name.data
-        # data.description = form.description.data
-        # data.rent = form.rent.data
         flash('Your product has been Deleted', 'success')
         return redirect(url_for('location.viewlocation'))
-    return render_template('location/delete.html', title='delete_Location', form=form, locations=location,data=data)
+    return render_template('location/delete.html', title='delete_Location', form=form, locations=location, data=data)
 
 
 @blueprint.route(blueprint.url + '/api')
@@ -70,9 +64,10 @@ def pub_index():
     data = []
     for b in data_list.items:
         row = [b.location_id, b.name, b.description, b.rent,
-               # '<a href="{0}">Edit</a>'.format(url_for('location.edit_location', location_id=b.location_id))
-               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(url_for('location.edit_location', location_id=b.location_id)) + "  " + \
-               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(url_for('location.delete_location', location_id=b.location_id))]
+               '<a href="{0}"><i class="fa-solid fa-pen-to-square"></i></a>'.format(
+                   url_for('location.edit_location', location_id=b.location_id)) + "  " + \
+               '<a href="{0}"><i class="fa-solid fa-trash"></i></a>'.format(
+                   url_for('location.delete_location', location_id=b.location_id))]
 
         data += [row]
     print("data_list.total: ", data_list.total)

@@ -1,6 +1,5 @@
 from flask import render_template, url_for, flash, request, jsonify
 from flask_login import login_required
-from flask_wtf import form
 from werkzeug.utils import redirect
 
 from utility.blueprint import ProjectBlueprint
