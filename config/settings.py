@@ -5,7 +5,7 @@ LOG_LEVEL = 'DEBUG'
 SECRET_KEY = 'abdinafac'
 
 # SQLAlchemy.
-db_uri = 'postgresql://postgres:ali12.,ali@127.0.0.1/inv3'
+db_uri = 'postgresql://postgres:ali12.,ali@127.0.0.1/Inventory'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = db_uri
 
